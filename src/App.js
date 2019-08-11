@@ -29,7 +29,7 @@ const useFetch = url => {
 };
 
 function App() {
-  const { loading, data } = useFetch("http://localhost:3001/gps");
+  const { loading, data } = useFetch("/gps");
 
   return (
     <div>
