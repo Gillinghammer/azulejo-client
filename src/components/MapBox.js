@@ -23,16 +23,15 @@ function MapBox({ data, styles }) {
         window.mapObject = map;
         console.log("map on style load", map, load, window);
       }}
-      style="mapbox://styles/mapbox/satellite-streets-v10?optimize=true"
+      style="mapbox://styles/gillinghammer/cjzh3b0c61jsd1cqqoai3rq5x"
       containerStyle={styles.mobile.map}
     >
       <Layer
         type="symbol"
         id="marker"
         layout={{
-          "icon-image": "marker-15",
-          "icon-size": 3,
-          "icon-pitch-alignment": "auto"
+          "icon-image": "castle-15",
+          "icon-size": 1.5
         }}
       >
         {data.features.map((feature, index) => (

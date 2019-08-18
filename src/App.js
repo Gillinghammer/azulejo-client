@@ -8,7 +8,7 @@ const baseUrl =
 const styles = {
   mobile: {
     container: { display: "flex", flexDirection: "column-reverse" },
-    map: { height: "50vh", width: "100vw" }
+    map: { height: "40vh", width: "100vw" }
   },
   desktop: {
     container: { display: "flex", flexDirection: "row" },

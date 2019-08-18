@@ -17,9 +17,14 @@ function Menu({ features }) {
       <div
         key={key}
         style={{
+          // border: index === activeIndex ? "4px solid white" : "none",
+          opacity: index !== activeIndex ? "0.25" : "1",
+          transition: "opacity 1s ease-in-out",
+          boxSizing: "border-box",
           display: "inline-block",
-          width: "540px",
-          height: "540px",
+          width: "500px",
+          height: "100vh",
+          maxHeight: "500px",
           backgroundImage: `url(${staticUrl + imageLocation})`,
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center center",
@@ -34,14 +39,15 @@ function Menu({ features }) {
       ref={containerRef}
       onScroll={s => {
         let [first, last] = listRef.current.getVisibleRange();
+        console.log({ first, last });
         if (activeIndex != first) {
           updateActive(first);
           let coords = tiles[first].geometry.coordinates;
           window.mapObject.flyTo({
             center: coords,
             bearing: Math.random() * (180 - 0) + 0,
-            pitch: 220,
-            zoom: 18,
+            pitch: 180,
+            zoom: 19,
             speed: 1,
             curve: 1,
             easing(t) {
@@ -51,9 +57,9 @@ function Menu({ features }) {
         }
       }}
       style={{
-        backgroundColor: "white",
+        backgroundColor: "black",
         width: "100%",
-        // height: "100vh",
+        height: "100%",
         overflowX: "auto",
         whiteSpace: "nowrap",
         display: "inline-block"
@@ -61,8 +67,9 @@ function Menu({ features }) {
     >
       <div
         style={{
-          maxWidth: "500px",
-          minHeight: "500px",
+          maxWidth: "400px",
+          height: "100vh",
+          maxHeight: "400px",
           backgroundColor: "black",
           color: "white",
           padding: "20px 40px",
@@ -97,7 +104,7 @@ function Menu({ features }) {
           </a>{" "}
           ) to share these photos.
         </p>
-        <p style={{ lineHeight: "22px" }}>Scroll down to begin.</p>
+        <h2 style={{ float: "right" }}>Scroll ></h2>
       </div>
       <ReactList
         ref={listRef}
