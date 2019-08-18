@@ -2,6 +2,20 @@ import React, { useState, useEffect } from "react";
 import MapBox from "./components/MapBox";
 import Menu from "./components/Menu";
 
+const baseUrl =
+  process.env.NODE_ENV === "development" ? "http://localhost:3001/" : "/";
+
+const styles = {
+  mobile: {
+    container: { display: "flex", flexDirection: "column-reverse" },
+    map: { height: "50vh", width: "100vw" }
+  },
+  desktop: {
+    container: { display: "flex", flexDirection: "row" },
+    map: { height: "100vh", width: "100vw" }
+  }
+};
+
 function shuffle(a) {
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -29,16 +43,16 @@ const useFetch = url => {
 };
 
 function App() {
-  const { loading, data } = useFetch("/gps");
+  const { loading, data } = useFetch(`${baseUrl}gps`);
 
   return (
     <div>
       {loading ? (
         <div>Loading...</div>
       ) : (
-        <div style={{ display: "flex" }}>
+        <div style={styles.mobile.container}>
           <Menu features={shuffle(data.features)} />
-          <MapBox data={data} />
+          <MapBox styles={styles} data={data} />
         </div>
       )}
     </div>
