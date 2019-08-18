@@ -34,7 +34,6 @@ const useFetch = url => {
     setData(json);
     setLoading(false);
   }
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -44,6 +43,11 @@ const useFetch = url => {
 
 function App() {
   const { loading, data } = useFetch(`${baseUrl}gps`);
+  const [mapLoaded, setMapLoaded] = useState(false);
+
+  const updateLoadedMap = () => {
+    setMapLoaded(true);
+  };
 
   return (
     <div>
@@ -51,8 +55,16 @@ function App() {
         <div>Loading...</div>
       ) : (
         <div style={styles.mobile.container}>
-          <Menu features={shuffle(data.features)} />
-          <MapBox styles={styles} data={data} />
+          {!mapLoaded ? (
+            <div>...</div>
+          ) : (
+            <Menu features={shuffle(data.features)} />
+          )}
+          <MapBox
+            updateLoadedMap={() => updateLoadedMap()}
+            styles={styles}
+            data={data}
+          />
         </div>
       )}
     </div>

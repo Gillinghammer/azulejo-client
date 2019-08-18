@@ -9,7 +9,7 @@ const Map = ReactMapboxGl({
 
 // https://docs.mapbox.com/mapbox-gl-js/style-spec/#types-layout
 
-function MapBox({ data, styles }) {
+function MapBox({ data, styles, updateLoadedMap }) {
   const lisboaCoords = [-9.142685, 38.736946];
   const startingZoom = [11];
 
@@ -21,7 +21,8 @@ function MapBox({ data, styles }) {
       bearing={[-20]}
       onStyleLoad={(map, load) => {
         window.mapObject = map;
-        console.log("map on style load", map, load, window);
+        // console.log("map on style load", map, load, window);
+        updateLoadedMap();
       }}
       style="mapbox://styles/gillinghammer/cjzh3b0c61jsd1cqqoai3rq5x"
       containerStyle={styles.mobile.map}
